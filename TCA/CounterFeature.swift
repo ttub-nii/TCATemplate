@@ -34,9 +34,10 @@ struct CounterFeature { /// 보통 Reducer를 confirm하는 객체를 Feature �
         case timer
     }
     
-    @Dependency(\.continuousClock) var clock
     /// @Dependency 를 쓰면 keypath 로 EnvironmentValues 를 extension 한 defaultValue 에 전달되는 듯.
     /// DependencyKey 에 liveValue, previewValue, testValue 3가지 있음. 이제 $0.context 로 쓰면 될 듯.
+    @Dependency(\.continuousClock) var clock
+    @Dependency(\.numberFact) var numberFact
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -50,28 +51,12 @@ struct CounterFeature { /// 보통 Reducer를 confirm하는 객체를 Feature �
                 state.count += 1
                 state.fact = nil
                 return .none
-            
+                
             case .factButtonTapped:
                 state.fact = nil
                 state.isLoading = true
-                
-//                let (data, _) = try await URLSession.shared
-//                    .data(from: URL(string: "http://numbersapi.com/\(state.count)")!)
-//                // 🛑 'async' call in a function that does not support concurrency
-//                // 🛑 Errors thrown from here are not handled
-//                
-//                state.fact = String(decoding: data, as: UTF8.self)
-//                state.isLoading = false
                 return .run { [count = state.count] send in
-                    // ✅ Do async work in here, and send actions back into the system.
-//                    let (data, _) = try await URLSession.shared
-//                        .data(from: URL(string: "http://numbersapi.com/\(count)")!)
-//                    let fact = String(decoding: data, as: UTF8.self)
-//                    state.fact = fact
-//                    // 🛑 Mutable capture of 'inout' parameter 'state' is not allowed in concurrently-executing code
-                    Task(priority: .background) {
-                        await send(.factResponse("123"))
-                    }
+                    try await send(.factResponse(self.numberFact.fetch(count)))
                 }
                 
             case let .factResponse(fact):

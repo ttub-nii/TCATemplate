@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2124D102C3D15FC00B01E39 /* NumberFactClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2124D0F2C3D15FC00B01E39 /* NumberFactClient.swift */; };
 		C2B2F6282C3D0B8C000F7143 /* CounterFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B2F6272C3D0B8C000F7143 /* CounterFeatureTests.swift */; };
 		C2C54FBD2C215C9300A8145D /* TCAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C54FBC2C215C9300A8145D /* TCAApp.swift */; };
 		C2C54FC12C215C9500A8145D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2C54FC02C215C9500A8145D /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C2124D0F2C3D15FC00B01E39 /* NumberFactClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactClient.swift; sourceTree = "<group>"; };
 		C2B2F6272C3D0B8C000F7143 /* CounterFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterFeatureTests.swift; sourceTree = "<group>"; };
 		C2C54FB92C215C9300A8145D /* TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C54FBC2C215C9300A8145D /* TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAApp.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				C2C54FBC2C215C9300A8145D /* TCAApp.swift */,
 				C2C54FEC2C215F4800A8145D /* CounterView.swift */,
 				C2C54FE72C215CA900A8145D /* CounterFeature.swift */,
+				C2124D0F2C3D15FC00B01E39 /* NumberFactClient.swift */,
 				C2C54FC02C215C9500A8145D /* Assets.xcassets */,
 				C2C54FC22C215C9500A8145D /* TCA.entitlements */,
 				C2C54FC32C215C9500A8145D /* Preview Content */,
@@ -276,6 +279,7 @@
 				C2C54FE82C215CA900A8145D /* CounterFeature.swift in Sources */,
 				C2C54FBD2C215C9300A8145D /* TCAApp.swift in Sources */,
 				C2C54FED2C215F4800A8145D /* CounterView.swift in Sources */,
+				C2124D102C3D15FC00B01E39 /* NumberFactClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
