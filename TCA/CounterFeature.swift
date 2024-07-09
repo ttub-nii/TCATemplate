@@ -34,6 +34,10 @@ struct CounterFeature { /// 보통 Reducer를 confirm하는 객체를 Feature �
         case timer
     }
     
+    @Dependency(\.continuousClock) var clock
+    /// @Dependency 를 쓰면 keypath 로 EnvironmentValues 를 extension 한 defaultValue 에 전달되는 듯.
+    /// DependencyKey 에 liveValue, previewValue, testValue 3가지 있음. 이제 $0.context 로 쓰면 될 듯.
+    
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
@@ -79,8 +83,7 @@ struct CounterFeature { /// 보통 Reducer를 confirm하는 객체를 Feature �
                 state.isTimerRunning.toggle()
                 if state.isTimerRunning {
                     return .run { send in
-                        while true { /// long-living effect
-                            try await Task.sleep(for: .seconds(1))
+                        for await _ in self.clock.timer(interval: .seconds(1)) {
                             await send(.timerTick)
                         }
                     }.cancellable(id: CancelID.timer)
