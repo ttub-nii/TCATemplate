@@ -35,8 +35,9 @@ final class CounterFeatureTests: XCTestCase {
         await store.send(.toggleTimerButtonTapped) {
             $0.isTimerRunning = true
         }
-        await store.receive(\.timerTick) {
+        await store.receive(\.timerTick, timeout: .seconds(2)) {
             /// toggleTimerButtonTapped 에서 timerTick 을 보내고 받을 때까지 기다림
+            // TODO: 테스팅마다  2초씩 기다릴 수 없으니 dependency 만들어둘거임
             $0.count = 1
         }
         await store.send(.toggleTimerButtonTapped) {
