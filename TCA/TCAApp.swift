@@ -10,16 +10,15 @@ import SwiftUI
 
 @main
 struct MyApp: App {
-  static let store = Store(initialState: CounterFeature.State()) {
-    CounterFeature()
-      ._printChanges()
-  }
-  
-  var body: some Scene {
-    WindowGroup {
-      CounterView(store: MyApp.store)
+    static let store = Store(initialState: AppFeature.State()) {
+        AppFeature()
     }
-  }
+    
+    var body: some Scene {
+        WindowGroup {
+            AppView(store: MyApp.store)
+        }
+    }
 }
 
 // view 면 @State 이거나 static let 이어야할듯
